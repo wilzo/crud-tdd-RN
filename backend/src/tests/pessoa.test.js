@@ -9,15 +9,15 @@ app.use(express.json());
 app.use('/api', pessoaRoutes);
 
 beforeAll(async () => {
-  await sequelize.sync({ force: true }); // Limpa e cria as tabelas do banco
+  await sequelize.sync({ force: true }); 
 });
 
 afterAll(async () => {
-  await sequelize.close(); // Fecha conexão com banco
+  await sequelize.close(); 
 });
 
 describe('CRUD Pessoa - Testes TDD', () => {
-  let pessoaId; // Guardar ID para testes update/delete
+  let pessoaId; 
 
 
   test('Deve criar uma pessoa com data no formato brasileiro DD/MM/YYYY', async () => {
@@ -79,7 +79,6 @@ test('Deve criar uma nova pessoa com data no formato ISO (YYYY-MM-DD)', async ()
     expect(response.body).toHaveProperty('error');
   });
 
-  // Novo teste para DELETE
   test('Deve deletar pessoa cadastrada', async () => {
     const response = await request(app).delete(`/api/pessoas/${pessoaId}`);
     expect(response.status).toBe(200);
